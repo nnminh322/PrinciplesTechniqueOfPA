@@ -95,31 +95,6 @@ clang++ -std=c++17 -O2 -Wall -Wextra .\tempCodeRunnerFile.cpp -o hw3.exe 2> hw3_
 .\hw3.exe fault_loc     > hw3_fault_loc.output 2>&1
 ```
 
-Kết quả người đọc cần xem:
-- `hw3_build.output`: warning khi compile (nếu có)
-- `hw3_trace_slice.output`: trace + thin dynamic slice
-- `hw3_exec_index.output`: execution index (context) của từng event
-- `hw3_fault_loc.output`: test results + bảng suspiciousness (Ochiai)
-
----
-
-## Gợi ý cấu trúc thư mục (tuỳ chọn)
-
-```text
-.
-├── HW1_report.docx
-├── hw2/
-│   ├── problem.cpp
-│   ├── hw2_build.output
-│   └── hw2_run.output
-└── hw3/
-    ├── tempCodeRunnerFile.cpp
-    ├── hw3_build.output
-    ├── hw3_trace_slice.output
-    ├── hw3_exec_index.output
-    └── hw3_fault_loc.output
-```
-
 ---
 
 ## Ghi chú ngắn 
