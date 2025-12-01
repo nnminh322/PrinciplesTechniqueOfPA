@@ -1,0 +1,113 @@
+Program output: z=10
+=== TRACE (control+value+memory) ===
+E0  S1  <main>
+  W: z=0 
+E1  S2  <main>
+  W: a=0 
+E2  S3  <main>
+  W: b=2 
+  MW: *(0x16f2529f4)=2 
+E3  S4  <main>
+  W: p=6159673844 
+E4  S5  <main>
+  W: i=1 
+E5  S6  <main/W#1>
+  R: i=1 input=5 
+  W: cond=1 
+E6  S7  <main/W#1>
+  R: i=1 
+  W: even=0 
+E7  S8  <main/W#1>
+  R: a=0 
+  W: a=1 
+  MW: *(0x16f2529f8)=1 
+E8  S9  <main/W#1>
+  R: p=6159673844 
+  W: z=4 
+  MR: *(0x16f2529f4)=2 
+E9  S6  <main/W#2>
+  R: i=2 input=5 
+  W: cond=1 
+E10  S7  <main/W#2>
+  R: i=2 
+  W: even=1 p=6159673848 
+E11  S8  <main/W#2>
+  R: a=1 
+  W: a=2 
+  MW: *(0x16f2529f8)=2 
+E12  S9  <main/W#2>
+  R: p=6159673848 
+  W: z=4 
+  MR: *(0x16f2529f8)=2 
+E13  S6  <main/W#3>
+  R: i=3 input=5 
+  W: cond=1 
+E14  S7  <main/W#3>
+  R: i=3 
+  W: even=0 
+E15  S8  <main/W#3>
+  R: a=2 
+  W: a=3 
+  MW: *(0x16f2529f8)=3 
+E16  S9  <main/W#3>
+  R: p=6159673848 
+  W: z=6 
+  MR: *(0x16f2529f8)=3 
+E17  S6  <main/W#4>
+  R: i=4 input=5 
+  W: cond=1 
+E18  S7  <main/W#4>
+  R: i=4 
+  W: even=1 p=6159673848 
+E19  S8  <main/W#4>
+  R: a=3 
+  W: a=4 
+  MW: *(0x16f2529f8)=4 
+E20  S9  <main/W#4>
+  R: p=6159673848 
+  W: z=8 
+  MR: *(0x16f2529f8)=4 
+E21  S6  <main/W#5>
+  R: i=5 input=5 
+  W: cond=1 
+E22  S7  <main/W#5>
+  R: i=5 
+  W: even=0 
+E23  S8  <main/W#5>
+  R: a=4 
+  W: a=5 
+  MW: *(0x16f2529f8)=5 
+E24  S9  <main/W#5>
+  R: p=6159673848 
+  W: z=10 
+  MR: *(0x16f2529f8)=5 
+E25  S6  <main/W#6>
+  R: i=6 input=5 
+  W: cond=0 
+E26  S10  <main>
+  R: z=10 
+=== THIN DYNAMIC SLICE for criterion <S10, z> ===
+{ 2 5 7 8 9 10 }
+Execution-index demo output: x=2
+=== EXECUTION INDEXES (each event has a context index) ===
+E0 S100 <main>
+E1 S102 <main/LoopK#1>
+E2 S101 <main/LoopK#1/T/foo#1>
+E3 S102 <main/LoopK#2>
+E4 S101 <main/LoopK#2/F/foo#2>
+E5 S103 <main>
+=== TEST RESULTS ===
+T0 : PASS ; covered { 201 203 205 }
+T1 : PASS ; covered { 201 202 }
+T2 : FAIL ; covered { 201 203 204 }
+T3 : FAIL ; covered { 201 203 204 }
+T4 : PASS ; covered { 201 203 205 }
+T5 : PASS ; covered { 201 203 205 }
+=== FAULT LOCALIZATION (Ochiai suspiciousness) ===
+total_fail=2, total_pass=4
+S204 score=1 (fail_exec=2, pass_exec=0)
+S203 score=0.632456 (fail_exec=2, pass_exec=3)
+S201 score=0.57735 (fail_exec=2, pass_exec=4)
+S202 score=0 (fail_exec=0, pass_exec=1)
+S205 score=0 (fail_exec=0, pass_exec=3)
+Expected: statement S204 is the most suspicious (buggy branch).

@@ -8,6 +8,9 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
+#include <cstdint>   // uint64_t
+#include <cstddef>   // size_t (tùy, nhưng nên có)
+
 
 using std::string;
 

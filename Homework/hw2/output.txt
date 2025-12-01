@@ -1,0 +1,47 @@
+=== (2) CFG edges ===
+(0 -> 1)
+(1 -> 2)
+(2 -> 3)
+(3 -> 4)
+(3 -> 6)
+(4 -> 5)
+(5 -> 3)
+(6 -> 7)
+(7 -> 8)
+
+CFG as DOT (Graphviz):
+digraph CFG {
+  node [shape=box];
+  n0 [label="0: Start"];
+  n1 [label="1: sum = 0"];
+  n2 [label="2: i = 1"];
+  n3 [label="3: while (i < 11)"];
+  n4 [label="4: sum = sum + i"];
+  n5 [label="5: i = i + 1"];
+  n6 [label="6: print(sum)"];
+  n7 [label="7: print(i)"];
+  n8 [label="8: End"];
+  n0 -> n1;
+  n1 -> n2;
+  n2 -> n3;
+  n3 -> n4;
+  n3 -> n6;
+  n4 -> n5;
+  n5 -> n3;
+  n6 -> n7;
+  n7 -> n8;
+}
+
+=== (1) Reaching Definitions (OUT sets) ===
+node  1 | sum = 0            | OUT = {(sum,1)}
+node 2  | i = 1              | OUT = {(i,2), (sum,1)}
+node 3  | while (i < 11)     | OUT = {(i,2), (i,5), (sum,1), (sum,4)}
+node 4  | sum = sum + i      | OUT = {(i,2), (i,5), (sum,4)}
+node 5  | i = i + 1          | OUT = {(i,5), (sum,4)}
+node 6  | print(sum)         | OUT = {(i,2), (i,5), (sum,1), (sum,4)}
+node 7  | print(i)           | OUT = {(i,2), (i,5), (sum,1), (sum,4)}
+
+=== (3)+(4) Memory + Pointer demo ===
+stack local x = 10
+*p = 123, *(p+1) = 456
+after free, deref p -> read: use-after-free
